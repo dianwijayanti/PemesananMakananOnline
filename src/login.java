@@ -5,17 +5,17 @@ import java.util.Scanner;
         public static boolean Logins() {
             boolean login = false;
             users.setUsername("ADMIN");
-            users.setPassword("123");
+            users.setPassword("admin");
 
             users.setUsername_cust("CUSTOMER");
-            users.setPassword_cust("456");
+            users.setPassword_cust("111");
 
             String username, password;
             System.out.println("========================================================");
-            System.out.println("LOG IN RESTORAN\n");
+            System.out.println("                  LOG IN RESTORAN\n");
             System.out.print("Masukkan Username : ");
             username = input.nextLine();
-            System.out.print("Masukkan Pass : ");
+            System.out.print("Masukkan Pass     : ");
             password = input.nextLine();
             System.out.println("========================================================\n");
 

@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Restoran {
+public class Main {
     static User users = new User();
     static Scanner input = new Scanner(System.in);
     static login signin = new login();
@@ -17,36 +17,35 @@ public class Restoran {
     public static void menu() {
         // apabila status user admin
         if (users.getStatus() == "Admin") {
-            System.out.println("1. Tambah Resto");
-            System.out.println("2. Edit Resto");
-            System.out.println("3. Hapus Resto");
-            System.out.println("4. Lihat Resto");
-            System.out.println("5. Back to Login");
+            System.out.println("1. Lihat Restoran");
+            System.out.println("2. Tambah Restoran");
+            System.out.println("3. Hapus Restoran");
+            System.out.println("4. Kembali ke Login");
             pilihan = Integer.parseInt(input.nextLine());
             if (pilihan == 1) {
-                addResto();
-            } else if (pilihan == 4) {
                 showResto();
-            } else if (pilihan == 3) {
             } else if (pilihan == 2) {
-                editResto();
-            } else if (pilihan == 5) {
+                addResto();
+            } else if (pilihan == 3) {
+                deleteResto();
+            } else if (pilihan == 4) {
                 logins();
             } else {
                 System.exit(0);
             }
+
             // apabila status user customer
-        } else if (users.getStatus() == "Customer") {
-            System.out.println("1. Buat Pesanan");
-            System.out.println("2. Lihat Pesanan");
-            System.out.println("3. Lihat Resto");
-            System.out.println("4. Back to Login");
+        }else if (users.getStatus() == "Customer") {
+            System.out.println("1. Lihat Restoran");
+            System.out.println("2. Buat Pesanan");
+            System.out.println("3. Lihat Pesanan");
+            System.out.println("4. Kembali ke Login");
             pilihan = Integer.parseInt(input.nextLine());
-            if (pilihan == 3) {
+            if (pilihan == 1) {
                 showResto();
-            } else if (pilihan == 1) {
-                addPesanan();
             } else if (pilihan == 2) {
+                addPesanan();
+            } else if (pilihan == 3) {
                 showPesanan();
             } else if (pilihan == 4) {
                 logins();
@@ -58,12 +57,12 @@ public class Restoran {
 
     // method login
     public static boolean logins() {
-        boolean oke = false;
-        users.setUsername("admin");
+        boolean login = false;
+        users.setUsername("ADMIN");
         users.setPassword("admin");
 
-        users.setUsername_cust("customer");
-        users.setPassword_cust("customer");
+        users.setUsername_cust("CUSTOMER");
+        users.setPassword_cust("456");
 
         String username, password;
         System.out.print("Masukkan username: ");
@@ -74,14 +73,14 @@ public class Restoran {
         if (users.getUsername().equals(username) || users.getUsername_cust().equals(username)) {
             if (users.getPassword().equals(password)) {
                 users.setStatus("Admin");
-                oke = true;
+                login = true;
             } else if (users.getPassword_cust().equals(password)) {
                 users.setStatus("Customer");
-                oke = true;
+                login = true;
             }
         }
 
-        return oke;
+        return login;
     }
 
     public static void addResto() {
@@ -236,21 +235,13 @@ public class Restoran {
         kodeRest = new ArrayList<>();
         namaRest = new ArrayList<>();
         alamatRest = new ArrayList<>();
-        // kodeRestMen = new ArrayList<>();
-        // namaMenu2 = new ArrayList<>();
-        // hargaMenu = new ArrayList<>();
-        // kodeMenu2 = new ArrayList<>();
         users.setStatus("Admin");
         if (signin.Logins()) {
             while (true) {
                 menu();
             }
         } else {
-            System.out.println("Username atau Pass yang dimasukkan salah");
+            System.out.println("Username atau Pass yang Dimasukkan Salah!");
         }
-        // if (logins()) {
-        // } else {
-        // System.out.println("Username atau Password Salah!");
-        // }
     }
 }
